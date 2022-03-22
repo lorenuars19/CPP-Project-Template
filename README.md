@@ -6,7 +6,7 @@ All 42 Canonical Classes cpp modules compliant.
 
 ## Canonical Classes
 - Default Constructor
-- Copy Consturctor
+- Copy Constructor
 - Destructor
 - Copy Assignement Operator
 
