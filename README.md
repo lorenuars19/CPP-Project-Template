@@ -14,13 +14,13 @@ All 42 Canonical Classes cpp modules compliant.
 ```c
 class FortyTwo
 {
-	FortyTwo( void );	// Default Constructor
-	FortyTwo( int var );	// Fields Constructor
+	FortyTwo( void );								// Default Constructor
+	FortyTwo( int var );							// Fields Constructor
 
-	FortyTwo( const FortyTwo &copy);	// Copy Constructor
+	FortyTwo( const FortyTwo &copy);				// Copy Constructor
 	FortyTwo & operator=(const FortyTwo &assign);	// Copy Assignement Operator
 
-	~FortyTwo( void );	// Destructor
+	~FortyTwo( void );								// Destructor
 }
 ```
 [more info on canonical classes](https://www.francescmm.com/orthodox-canonical-class-form/)
