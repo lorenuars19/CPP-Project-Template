@@ -37,6 +37,7 @@ $(BIN_DIR):
 
 $(BIN_DIR)/%.o: $(SRC_DIR)/%.$(SRC_EXT) | $(BIN_DIR)
 	@printf "\e[32;1m+++ $@ -- [$(CXXFLAGS)] \e[0m\n"
+	@mkdir -p $(@D)
 	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
