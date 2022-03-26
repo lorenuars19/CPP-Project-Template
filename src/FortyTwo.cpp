@@ -20,7 +20,7 @@ FortyTwo::FortyTwo( const FortyTwo &copy )
 		<< std::endl;
 }
 
-FortyTwo::FortyTwo( int var ) _var(var)
+FortyTwo::FortyTwo( int var ) : _var(var)
 {
 	std::cout << _AUTO(32, "Fields Constructor")
 		<< std::endl;
