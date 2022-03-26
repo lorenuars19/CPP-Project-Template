@@ -34,7 +34,7 @@ FortyTwo::~FortyTwo( void )
 }
 // ------------------------------- Operators ------------------------------- //
 
-FortyTwo & FortyTwo::operator=(const FortyTwo &assign)
+FortyTwo & FortyTwo::operator=( const FortyTwo &assign )
 {
 	_var = assign.getVar();
 	return *this;
@@ -57,7 +57,7 @@ void	FortyTwo::setVar( int input )
 }
 
 // --------------------------------- Methods ------------------------------- //
-int	FortyTwo::isEqual( FortyTwo t)
+int	FortyTwo::isEqual( FortyTwo t )
 {
 	if (this->getVar() == t.getVar())
 	{
