@@ -4,7 +4,7 @@ NAME = exec.out
 # CPP Make Variables
 CXX := g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-INCLUDES = -I include/
+INCLUDES = -I includes/
 
 # Directories
 BIN_DIR = ./bin
@@ -18,6 +18,7 @@ SRC_EXT = cpp
 SRCS = \
 	./src/FortyTwo.cpp \
 	./src/main.cpp \
+	./src/subfolder/test.cpp \
 
 HEADERS = \
 	./includes/FortyTwo.hpp\
@@ -36,7 +37,7 @@ $(BIN_DIR):
 	@mkdir -p $(BIN_DIR)
 
 $(BIN_DIR)/%.o: $(SRC_DIR)/%.$(SRC_EXT) | $(BIN_DIR)
-	@printf "\e[32;1m+++ $@ -- [$(CXXFLAGS)] \e[0m\n"
+	@printf "\e[32;1m+++ $< -- [$(CXXFLAGS)] \e[0m\n"
 	@mkdir -p $(@D)
 	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
