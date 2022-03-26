@@ -16,12 +16,8 @@ SRC_EXT = cpp
 # **************************************************************************** #
 
 SRCS = \
-	./src/FortyTwo.cpp \
-	./src/main.cpp \
-	./src/subfolder/test.cpp \
 
 HEADERS = \
-	./includes/FortyTwo.hpp\
 
 ###▲▲▲<src-updater-do-not-edit-or-remove>▲▲▲
 
