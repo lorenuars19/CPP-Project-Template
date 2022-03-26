@@ -24,8 +24,8 @@ class FortyTwo
 	FortyTwo( void );				// Default Constructor
 	FortyTwo( int var );				// Fields Constructor
 
-	FortyTwo( const FortyTwo &copy);		// Copy Constructor
-	FortyTwo & operator=(const FortyTwo &assign);	// Copy Assignement Operator
+	FortyTwo( const FortyTwo &copy );		// Copy Constructor
+	FortyTwo & operator=(const FortyTwo &assign );	// Copy Assignement Operator
 
 	~FortyTwo( void );				// Destructor
 }
