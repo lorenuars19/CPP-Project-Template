@@ -6,11 +6,20 @@ All 42 Canonical Classes cpp modules compliant.
 
 # Features
 - Makefile
-- script to update SRCS variable in Makefile automatically<br>
-Run with 
+- script to update SRCS variable in Makefile automatically :<br>
+Run with
 ```bash
 bash update_srcs.sh
 ```
+- script to generate new canonical classes :<br>
+```bash
+bash cpp_gen.sh
+```
+Or
+```
+make gen_class
+```
+This script will ask you for the class name or you can pass it as an argument.
 ## Canonical Classes
 - Default Constructor
 - Copy Constructor
@@ -24,8 +33,8 @@ class FortyTwo
 	FortyTwo( void );				// Default Constructor
 	FortyTwo( int var );				// Fields Constructor
 
-	FortyTwo( const FortyTwo &copy );		// Copy Constructor
-	FortyTwo & operator=(const FortyTwo &assign );	// Copy Assignement Operator
+	FortyTwo( const FortyTwo& copy );		// Copy Constructor
+	FortyTwo & operator=(const FortyTwo& assign );	// Copy Assignement Operator
 
 	~FortyTwo( void );				// Destructor
 }

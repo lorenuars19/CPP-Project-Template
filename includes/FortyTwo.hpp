@@ -9,28 +9,34 @@ class FortyTwo
 // ----------------------------- Constructors ------------------------------ //
 		FortyTwo( void );	// Default Constructor
 		FortyTwo( int var );	// Fields Constructor
-		FortyTwo( const FortyTwo &copy );	// Copy Constructor
+		FortyTwo( const FortyTwo& copy );	// Copy Constructor
 
 // ------------------------------ Destructor ------------------------------- //
 		~FortyTwo( void );	// Destructor
 
 // ------------------------------- Operators ------------------------------- //
-		FortyTwo & operator=( const FortyTwo &assign );
+		FortyTwo & operator=( const FortyTwo& assign );
 		// Copy Assignement Operator
 
 // --------------------------- Getters && Setters -------------------------- //
-		int		getVar( void ) const;
-		void	setVar( int input );
+		int		get_var( void ) const;
+		void	set_var( int input );
 
 // --------------------------------- Methods ------------------------------- //
-		int		isEqual( FortyTwo t );
-
-		// virtual void *inheritedMethod( void );
-		// Virtual means using the inherited method : Polymorphism
+		int		is_equal( const FortyTwo comp );
 
 private:
 	int	_var;
 
 };
 
-#endif // TEMPLATE_HPP
+# ifndef NO_DEBUG
+#  define _ARGS "Args : var " << _var
+#  define _AUTO(COLOR_CODE, TEXT) std::cout << "\e[" << COLOR_CODE << ";1m" \
+	<< "< " << TEXT << " " << __PRETTY_FUNCTION__ << " > " \
+	<< "\e[0m" << _ARGS << std::endl
+# else
+#  define _AUTO(x, y) ;
+# endif
+
+#endif

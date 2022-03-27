@@ -8,8 +8,8 @@ int	main()
 
 	FortyTwo ft_2 = ft;
 
-	ft.setVar(19);
-	de.setVar(10);
+	ft.set_var(19);
+	de.set_var(10);
 
 	return 0;
 }
