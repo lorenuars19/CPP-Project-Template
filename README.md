@@ -15,10 +15,6 @@ bash update_srcs.sh
 ```bash
 bash cpp_gen.sh
 ```
-Or
-```
-make gen_class
-```
 This script will ask you for the class name or you can pass it as an argument.
 ## Canonical Classes
 - Default Constructor
