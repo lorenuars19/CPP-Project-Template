@@ -19,16 +19,16 @@ INC_DIR=./includes
 CLASS_EXT=".cpp"
 HEADER_EXT=".hpp"
 
-function gen_class_header()
+function gen_class_header
 {
 	name=$1
-	header_filename=${INC_DIR}/${name}${HEADER_EXT}
-	printf "\e[32;1m+++ Generating $name Header -- $header_filename\e[0m\n"
+	header_filename="${INC_DIR}/${name}${HEADER_EXT}"
+	printf "\e[32;1m+++ Generating ${name} Header -- $header_filename\e[0m\n"
 	mkdir -p $INC_DIR
-
+	header_prot=$(echo "${name}" | tr '[:lower:]' '[:upper:]')
 	cat > $header_filename << EOF
-#ifndef ${name^^}_HPP
-# define ${name^^}_HPP
+#ifndef ${header_prot}_HPP
+# define ${header_prot}_HPP
 
 # include <iostream>
 
@@ -72,7 +72,7 @@ private:
 EOF
 }
 
-function gen_class_file()
+function gen_class_file
 {
 	name=$1
 	class_filename=${SRC_DIR}/${name}${CLASS_EXT}
@@ -142,10 +142,10 @@ EOF
 
 if [[ $# -eq 0 ]]
 then
-	read -p "Enter class name : " $name
+	read -p "Enter class name : " ARG
 else
-	name=$1
+	ARG=$1
 fi
 
-gen_class_header $name
-gen_class_file $name
+gen_class_header $ARG
+gen_class_file $ARG
