@@ -53,6 +53,9 @@ fclean: clean
 
 re: fclean all
 
+soft: CXXFLAGS =
+soft: re all
+
 no_dbg: CXXFLAGS += -D NO_DEBUG
 no_dbg: re all
 
@@ -62,8 +65,12 @@ dbg: re all
 dbg_san: CXXFLAGS += -D DEBUG=1 -g3 -fsanitize=address
 dbg_san: re all
 
-dbg_lek: CXXFLAGS += -D DEBUG=1 -g3 -fsanitize=leak
+dbg_lek: CXXFLAGS += -D DEBUG=1 -g3 -fsanitize=address -fsanitize=leak
+dbg_lek: LSAN_OPTIONS=report_objects=1
+dbg_lek: ASAN_OPTIONS=detect_leaks=1
+dbg_lek: CXX = g++_
 dbg_lek: re all
+	echo $ASAN_OPTIONS
 
 gen_class:
 	bash cpp_gen.sh
