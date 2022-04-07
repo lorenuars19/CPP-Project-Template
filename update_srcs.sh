@@ -95,7 +95,7 @@ function split_append_join()
 	echo "# **   Generated with https://github.com/lorenuars19/makefile-src-updater   ** #" >> $splitA
 	echo "# **************************************************************************** #" >> $splitA
 	echo "" >> $splitA
-	echo $SRCname" = \\" >> $splitA
+	echo $SRCname" := \\" >> $splitA
 
 	if [[ -d $SRCdir ]]
 	then
@@ -104,7 +104,7 @@ function split_append_join()
 	fi
 
 	echo "" >> $splitA
-	echo $HEADERname" = \\" >> $splitA
+	echo $HEADERname" := \\" >> $splitA
 
 	if [[ -d $HEADERdir ]]
 	then
@@ -144,3 +144,5 @@ else
 fi
 
 printf "\033[32;1mUpdated SRCS in $file\033[0m\n"
+printf "\033[32;1mRunning make [$@]\033[0m\n"
+make $@

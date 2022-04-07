@@ -19,24 +19,21 @@ SHELL := bash
 # **   Generated with https://github.com/lorenuars19/makefile-src-updater   ** #
 # **************************************************************************** #
 
-SRCS = \
+SRCS := \
 	./src/FortyTwo.cpp \
 	./src/main.cpp \
 
-HEADERS = \
+HEADERS := \
 	./includes/FortyTwo.hpp\
 
 ###▲▲▲<src-updater-do-not-edit-or-remove>▲▲▲
 
 OBJS := $(SRCS:%.cpp=$(BIN_DIR)/%.o)
 
-.PHONY: all dir re clean fclean run update_srcs
+.PHONY: all dir re clean fclean run
 
-all : update_srcs $(NAME) run
+all : $(NAME) run
 
-update_srcs:
-	@printf "\e[33;1m=== Updating Srcs\e[0m\n"
-	@bash update_srcs.sh
 
 $(NAME) : $(OBJS)
 	@printf "\e[33;1m&&& Linking $(SRCS) -- [$(CXXFLAGS)] \n>>> $(NAME)\e[0m\n"
