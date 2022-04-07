@@ -34,7 +34,7 @@ private:
 #  define _ARGS "Args : var " << _var
 #  define _AUTO(COLOR_CODE, TEXT) std::cout << "\e[" << COLOR_CODE << ";1m" \
 	<< "< " << TEXT << " " << __PRETTY_FUNCTION__ << " > " \
-	<< "\e[0m" << _ARGS << std::endl
+	<< "\e[0m" << _ARGS
 # else
 #  define _AUTO(x, y) ;
 # endif

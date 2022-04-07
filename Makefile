@@ -70,7 +70,6 @@ dbg_lek: LSAN_OPTIONS=report_objects=1
 dbg_lek: ASAN_OPTIONS=detect_leaks=1
 dbg_lek: CXX = g++_
 dbg_lek: re all
-	echo $ASAN_OPTIONS
 
 gen_class:
 	bash cpp_gen.sh

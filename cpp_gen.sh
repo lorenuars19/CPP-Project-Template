@@ -63,7 +63,7 @@ private:
 #  define _ARGS "Args : var " << _var
 #  define _AUTO(COLOR_CODE, TEXT) std::cout << "\e[" << COLOR_CODE << ";1m" \\
 	<< "< " << TEXT << " " << __PRETTY_FUNCTION__ << " > " \\
-	<< "\e[0m" << _ARGS << std::endl
+	<< "\e[0m" << _ARGS
 # else
 #  define _AUTO(x, y) ;
 # endif
@@ -86,24 +86,24 @@ function gen_class_file
 ${name}::${name}( void )
 {
 	_var = 0;
-	_AUTO(32, "Default Constructor");
+	_AUTO(32, "Default Constructor") << std::endl;
 }
 
 ${name}::${name}( const ${name}& copy )
 {
 	_var = copy.get_var();
-	_AUTO(32, "Copy Constructor");
+	_AUTO(32, "Copy Constructor") << std::endl;
 }
 
 ${name}::${name}( int var ) : _var(var)
 {
-	_AUTO(32, "Fields Constructor");
+	_AUTO(32, "Fields Constructor") << std::endl;
 }
 
 // ------------------------------ Destructor ------------------------------- //
 ${name}::~${name}( void )
 {
-	_AUTO(31, "Destructor called");
+	_AUTO(31, "Destructor called") << std::endl;
 }
 // ------------------------------- Operators ------------------------------- //
 
@@ -116,14 +116,13 @@ ${name} & ${name}::operator=( const ${name}& assign )
 // --------------------------- Getters && Setters -------------------------- //
 int	${name}::get_var( void ) const
 {
-	_AUTO(33, "Getter");
+	_AUTO(33, "Getter") << std::endl;
 	return _var;
 }
 
 void	${name}::set_var( int input )
 {
-	_AUTO(34, "Setter");
-	std::cout << " Old " << _var << " New " << input << std::endl;
+	_AUTO(34, "Setter") << " Old " << _var << " New " << input << std::endl;
 	_var = input;
 }
 
