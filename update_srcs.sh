@@ -40,10 +40,10 @@ splitB=.split.b.ignore.me
 function check_file()
 {
 	if [ -r $file ]; then
-		printf $GR$file" is a readable file"$RC" > "
+		# printf $GR$file" is a readable file"$RC" > "
 		cp $file $bkpfile
 	else
-		printf $RE"Error : "$file" is not a readable file"$RC'\n'
+		printf $RE"Error : "$file" is not a readable file"$RC"\n"
 		return 1
 	fi
 
@@ -62,9 +62,9 @@ function get_split()
 	if [ -z $split_at ]
 	then
 		split_at=$(grep -n -m 1 $SRCname $file | sed 's/:.*//')
-		printf $CY"Found '$SRCname' at line $split_at"$RC" > "
+		# printf $CY"Found '$SRCname' at line $split_at"$RC" > "
 	else
-		printf $CY"Found '$SRC_MARK_START' at line $split_at"$RC" > "
+		# printf $CY"Found '$SRC_MARK_START' at line $split_at"$RC" > "
 		OLD_FOUND=1
 	fi
 	return 0
@@ -82,13 +82,12 @@ function split_append_join()
 		split_end=$(($split_at + $rem_old +_1))
 		head -n $split_start $file > $splitA
 		tail -n +$split_end $file > $splitB
-		printf $CY$file" split & removed from line "$split_start" to "$split_end" \
-("$rem_old") into "$splitA" & "$splitB$RC"\n"
+		# printf $CY$file" split & removed from line "$split_start" to "$split_end" ("$rem_old") into "$splitA" & "$splitB$RC" > "
 	else
 
 		head -n $(($split_at - 1)) $file > $splitA
 		tail -n +$(($split_at + 1)) $file > $splitB
-		printf $CY$file" split at line "$split_at" into "$splitA" & "$splitB$RC"\n"
+		# printf $CY$file" split at line "$split_at" into "$splitA" & "$splitB$RC" > "
 	fi
 
 	echo $SRC_MARK_START >> $splitA
@@ -101,7 +100,7 @@ function split_append_join()
 	if [[ -d $SRCdir ]]
 	then
 		find ./$SRCdir -type f -name "$SRCfindptrn" | sed -e 's|^|	|'| sed -e 's|$| \\|' >> $splitA
-		printf $CY"$SRCname appended to "$splitA$RC"\n"
+		# printf $CY"$SRCname appended to "$splitA$RC" > "
 	fi
 
 	echo "" >> $splitA
@@ -110,13 +109,13 @@ function split_append_join()
 	if [[ -d $HEADERdir ]]
 	then
 		find ./$HEADERdir -type f -name "$HEADERfindptrn" | sed -e 's|^|	|'| sed -e 's|$|\\|' >> $splitA
-		printf $CY"$HEADERname appended to "$splitA$RC"\n"
+		# printf $CY"$HEADERname appended to "$splitA$RC" > "
 	fi
 
 	echo "" >> $splitA
 	echo $SRC_MARK_END >> $splitA
 	cat $splitA $splitB > $file
-	printf $GR"$file re-joined"$RC"\n"
+	# printf $GR"$file re-joined"$RC"\n"
 
 	return 0
 }
@@ -135,11 +134,13 @@ if [[ OLD_FOUND -eq 0 ]]; then
 	read ans
 	if [ "$ans" == "Y" ] || [ "$ans" == "y" ] || [ -z "$ans" ];then
 		split_append_join $split_at
-		rm -fv $splitA $splitB
+		rm -f $splitA $splitB
 	else
 		exit 0
 	fi
 else
 	split_append_join $split_at
-	rm -fv $splitA $splitB
+	rm -f $splitA $splitB
 fi
+
+printf "\033[32;1mUpdated SRCS in $file\033[0m\n"
