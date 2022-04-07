@@ -37,7 +37,6 @@ all : update_srcs $(NAME) run
 update_srcs:
 	@printf "\e[33;1m=== Updating Srcs\e[0m\n"
 	@bash update_srcs.sh
-	sleep 2
 
 $(NAME) : $(OBJS)
 	@printf "\e[33;1m&&& Linking $(SRCS) -- [$(CXXFLAGS)] \n>>> $(NAME)\e[0m\n"
