@@ -53,14 +53,17 @@ fclean: clean
 
 re: fclean all
 
-no_debug: CXXFLAGS += -D NO_DEBUG
-no_debug: re all
+no_dbg: CXXFLAGS += -D NO_DEBUG
+no_dbg: re all
 
-debug: CXXFLAGS += -D DEBUG=1 -g3
-debug: re all
+dbg: CXXFLAGS += -D DEBUG=1 -g3
+dbg: re all
 
-debug_san: CXXFLAGS += -D DEBUG=1 -g3 -fsanitize=address
-debug_san: re all
+dbg_san: CXXFLAGS += -D DEBUG=1 -g3 -fsanitize=address
+dbg_san: re all
+
+dbg_lek: CXXFLAGS += -D DEBUG=1 -g3 -fsanitize=leak
+dbg_lek: re all
 
 gen_class:
 	bash cpp_gen.sh
