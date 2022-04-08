@@ -39,7 +39,7 @@ $(NAME) : $(OBJS)
 $(BIN_DIR):
 	@mkdir -p $(BIN_DIR)
 
-$(BIN_DIR)/%.o: $(SRC_DIR)/%.$(SRC_EXT) | $(BIN_DIR)
+$(BIN_DIR)/%.o: $(SRC_DIR)/%.$(SRC_EXT) $(HEADERS) | $(BIN_DIR)
 	@printf "\e[32;1m+++ Compiling $< -- [$(CXXFLAGS)] \e[0m\n"
 	@mkdir -p $(@D)
 	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
