@@ -25,10 +25,10 @@ function gen_class_header
 	header_filename="${INC_DIR}/${name}${HEADER_EXT}"
 	printf "\e[32;1m+++ Generating ${name} Header -- $header_filename\e[0m\n"
 	mkdir -p $INC_DIR
-	header_prot=$(echo "${name}" | tr '[:lower:]' '[:upper:]')
+	up_name=$(echo "${name}" | tr '[:lower:]' '[:upper:]')
 	cat > $header_filename << EOF
-#ifndef ${header_prot}_HPP
-# define ${header_prot}_HPP
+#ifndef ${up_name}_HPP
+# define ${up_name}_HPP
 
 # include <iostream>
 
@@ -60,12 +60,12 @@ private:
 };
 
 # ifndef NO_DEBUG
-#  define _ARGS "Args : var " << _var
-#  define _AUTO(COLOR_CODE, TEXT) std::cout << "\e[" << COLOR_CODE << ";1m" \\
+#  define _${up_name}_ARGS "Args : var " << _var
+#  define _${up_name}_AUTO(COLOR_CODE, TEXT) std::cout << "\e[" << COLOR_CODE << ";1m" \\
 	<< "< " << TEXT << " " << __PRETTY_FUNCTION__ << " > " \\
-	<< "\e[0m" << _ARGS
+	<< "\e[0m" << _${up_name}_ARGS
 # else
-#  define _AUTO(x, y) ;
+#  define _${up_name}_AUTO(x, y) ;
 # endif
 
 #endif
@@ -86,24 +86,24 @@ function gen_class_file
 ${name}::${name}( void )
 {
 	_var = 0;
-	_AUTO(32, "Default Constructor") << std::endl;
+	_${up_name}_AUTO(32, "Default Constructor") << std::endl;
 }
 
 ${name}::${name}( const ${name}& copy )
 {
 	_var = copy.get_var();
-	_AUTO(32, "Copy Constructor") << std::endl;
+	_${up_name}_AUTO(32, "Copy Constructor") << std::endl;
 }
 
 ${name}::${name}( int var ) : _var(var)
 {
-	_AUTO(32, "Fields Constructor") << std::endl;
+	_${up_name}_AUTO(32, "Fields Constructor") << std::endl;
 }
 
 // ------------------------------ Destructor ------------------------------- //
 ${name}::~${name}( void )
 {
-	_AUTO(31, "Destructor called") << std::endl;
+	_${up_name}_AUTO(31, "Destructor called") << std::endl;
 }
 // ------------------------------- Operators ------------------------------- //
 
@@ -116,13 +116,13 @@ ${name} & ${name}::operator=( const ${name}& assign )
 // --------------------------- Getters && Setters -------------------------- //
 int	${name}::get_var( void ) const
 {
-	_AUTO(33, "Getter") << std::endl;
+	_${up_name}_AUTO(33, "Getter") << std::endl;
 	return _var;
 }
 
 void	${name}::set_var( int input )
 {
-	_AUTO(34, "Setter") << " Old " << _var << " New " << input << std::endl;
+	_${up_name}_AUTO(34, "Setter") << " Old " << _var << " New " << input << std::endl;
 	_var = input;
 }
 
