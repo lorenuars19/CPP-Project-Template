@@ -23,6 +23,7 @@ SRCS := \
 
 HEADERS := \
 
+
 ###▲▲▲<src-updater-do-not-edit-or-remove>▲▲▲
 
 OBJS := $(SRCS:%.cpp=$(BIN_DIR)/%.o)
@@ -75,8 +76,9 @@ dbg_lek: re all
 gen_class:
 	bash cpp_gen.sh
 
+run: RUN_ARGS ?=
 run:
-	@printf "\e[34;1m>./ Running -- ./$(NAME)\e[0m\n"
+	@printf "\e[34;1m>./ Running -- ./$(NAME) [$(RUN_ARGS)]\e[0m\n"
 	@read -n 1 -p "Press any key to continue ..."
 
-	./$(NAME)
+	./$(NAME) $(RUN_ARGS)
