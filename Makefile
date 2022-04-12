@@ -23,7 +23,6 @@ SRCS := \
 
 HEADERS := \
 
-
 ###▲▲▲<src-updater-do-not-edit-or-remove>▲▲▲
 
 OBJS := $(SRCS:%.cpp=$(BIN_DIR)/%.o)
@@ -68,8 +67,8 @@ dbg_san: CXXFLAGS += -D DEBUG=1 -g3 -fsanitize=address
 dbg_san: re all
 
 dbg_lek: CXXFLAGS += -D DEBUG=1 -g3 -fsanitize=address -fsanitize=leak
-dbg_lek: LSAN_OPTIONS=report_objects=1
-dbg_lek: ASAN_OPTIONS=detect_leaks=1
+dbg_lek: export LSAN_OPTIONS=report_objects=1
+dbg_lek: export ASAN_OPTIONS=detect_leaks=1
 dbg_lek: CXX = g++_
 dbg_lek: re all
 
