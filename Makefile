@@ -20,8 +20,11 @@ SHELL := bash
 # **************************************************************************** #
 
 SRCS := \
+	./src/FortyTwo.cpp \
+	./src/main.cpp \
 
 HEADERS := \
+	./includes/FortyTwo.hpp\
 
 ###▲▲▲<src-updater-do-not-edit-or-remove>▲▲▲
 

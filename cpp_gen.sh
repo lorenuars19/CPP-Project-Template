@@ -1,16 +1,4 @@
 #!/bin/bash
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    ccp_gen.sh                                         :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/03/27 22:29:12 by lorenuar          #+#    #+#              #
-#    Updated: 2022/03/27 22:29:13 by lorenuar         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 # bash script to generate C++ canonical class files
 
 SRC_DIR=./src
@@ -35,40 +23,41 @@ function check_overwrite
 
 function gen_class_header
 {
-	name=$1
-	header_filename="${INC_DIR}/${name}${HEADER_EXT}"
+	CLASS_NAME=$1
+	HEADER_FILENAME="${INC_DIR}/${CLASS_NAME}${HEADER_EXT}"
 
-	check_overwrite $header_filename
+	check_overwrite $HEADER_FILENAME
 	if [[ $? -eq 1 ]]
 	then
 		return 1
 	fi
 
-	printf "\e[32;1m+++ Generating ${name} Header -- $header_filename\e[0m\n"
+	printf "\e[32;1m+++ Generating ${CLASS_NAME} Header -- $HEADER_FILENAME\e[0m\n"
 	mkdir -p $INC_DIR
-	up_name=$(echo "${name}" | tr '[:lower:]' '[:upper:]')
+	UP_CLASS_NAME=$(echo "${CLASS_NAME}" | tr '[:lower:]' '[:upper:]')
 
 
 
-	cat >> $header_filename << EOF
-#ifndef ${up_name}_HPP
-# define ${up_name}_HPP
+	cat > $HEADER_FILENAME << EOF
+#ifndef ${UP_CLASS_NAME}_HPP
+# define ${UP_CLASS_NAME}_HPP
 
 # include <iostream>
 
-class ${name}
+class ${CLASS_NAME}
 {
 	public:
+		typedef	${CLASS_NAME} t;
 // ----------------------------- Constructors ------------------------------ //
-		${name}( void );	// Default Constructor
-		${name}( int var );	// Fields Constructor
-		${name}( const ${name}& copy );	// Copy Constructor
+		${CLASS_NAME}( void );	// Default Constructor
+		${CLASS_NAME}( int var );	// Fields Constructor
+		${CLASS_NAME}( const t& c );	// Copy Constructor
 
 // ------------------------------ Destructor ------------------------------- //
-		~${name}( void );	// Destructor
+		~${CLASS_NAME}( void );	// Destructor
 
 // ------------------------------- Operators ------------------------------- //
-		${name} & operator=( const ${name}& assign );
+		${CLASS_NAME} & operator=( const t& a );
 		// Copy Assignement Operator
 
 // --------------------------- Getters && Setters -------------------------- //
@@ -76,7 +65,7 @@ class ${name}
 		void	set_var( int input );
 
 // --------------------------------- Methods ------------------------------- //
-		int		is_equal( const ${name} comp );
+		int		is_equal( const ${CLASS_NAME} comp );
 
 private:
 	int	_var;
@@ -84,27 +73,31 @@ private:
 };
 
 # ifndef NO_DEBUG
+
 #  ifndef _ARG
 #   define _ARG(arg) #arg << "(" << arg << ") "
 #  endif /* _ARG */
-#  define _${up_name}_ARGS "[ARGS] " << _ARG(_var)
-#  define _${up_name}_AUTO(COLOR_CODE, TEXT) std::cout << "\e[" << COLOR_CODE << ";1m" \\
+
+#  define _${UP_CLASS_NAME}_ARGS "[ARGS] " << _ARG(_var)
+#  define _${UP_CLASS_NAME}_AUTO(COLOR_CODE, TEXT) std::cout << "\e[" << COLOR_CODE << ";1m" \\
 	<< "< " << TEXT << " " << __PRETTY_FUNCTION__ << " > " \\
-	<< "\e[0m" << _${up_name}_ARGS
+	<< "\e[0m" << _${UP_CLASS_NAME}_ARGS << std::endl;
 # else
-#  define _${up_name}_AUTO(x, y) ""
-#  define _${up_name}_ARGS ""
+
+#  define _${UP_CLASS_NAME}_AUTO(x, y) ;
+#  define _${UP_CLASS_NAME}_ARGS ""
 #  define _ARG ""
+
 # endif /* NO_DEBUG */
 
-#endif /* ${up_name}_HPP */
+#endif /* ${UP_CLASS_NAME}_HPP */
 EOF
 }
 
 function gen_class_file
 {
-	name=$1
-	class_filename=${SRC_DIR}/${name}${CLASS_EXT}
+	CLASS_NAME=$1
+	class_filename=${SRC_DIR}/${CLASS_NAME}${CLASS_EXT}
 
 	check_overwrite $class_filename
 	if [[ $? -eq 1 ]]
@@ -112,54 +105,58 @@ function gen_class_file
 		return 1
 	fi
 
-	printf "\e[32;1m+++ Generating $name Class -- $class_filename\e[0m\n"
+	printf "\e[32;1m+++ Generating $CLASS_NAME Class -- $class_filename\e[0m\n"
 	mkdir -p $SRC_DIR
 
 
-	cat >> $class_filename << EOF
-#include "${name}.hpp"
+	cat > $class_filename << EOF
+#include "${CLASS_NAME}.hpp"
 
 // ----------------------------- Constructors ------------------------------ //
-${name}::${name}( void )
+${CLASS_NAME}::${CLASS_NAME}( void )
 {
 	_var = 0;
-	_${up_name}_AUTO(32, "Default Constructor") << std::endl;
+	_${UP_CLASS_NAME}_AUTO(32, "Default Constructor");
 }
 
-${name}::${name}( const ${name}& copy )
+${CLASS_NAME}::${CLASS_NAME}( const t& c )
 {
-	_var = copy.get_var();
-	_${up_name}_AUTO(32, "Copy Constructor") << std::endl;
+	_var = c.get_var();
+	_${UP_CLASS_NAME}_AUTO(32, "Copy Constructor");
 }
 
-${name}::${name}( int var ) : _var(var)
+${CLASS_NAME}::${CLASS_NAME}( int var ) : _var(var)
 {
-	_${up_name}_AUTO(32, "Fields Constructor") << std::endl;
+	_${UP_CLASS_NAME}_AUTO(32, "Fields Constructor");
 }
 
 // ------------------------------ Destructor ------------------------------- //
-${name}::~${name}( void )
+${CLASS_NAME}::~${CLASS_NAME}( void )
 {
-	_${up_name}_AUTO(31, "Destructor called") << std::endl;
+	_${UP_CLASS_NAME}_AUTO(31, "Destructor called");
 }
 // ------------------------------- Operators ------------------------------- //
 
-${name} & ${name}::operator=( const ${name}& assign )
+${CLASS_NAME} & ${CLASS_NAME}::operator=( const t& a )
 {
-	_var = assign.get_var();
+	_var = a.get_var();
 	return *this;
 }
 
 // --------------------------- Getters && Setters -------------------------- //
-int	${name}::get_var( void ) const
+int	${CLASS_NAME}::get_var( void ) const
 {
-	_${up_name}_AUTO(33, "Getter") << std::endl;
+	_${UP_CLASS_NAME}_AUTO(33, "Getter");
 	return _var;
 }
 
-void	${name}::set_var( int input )
+void	${CLASS_NAME}::set_var( int input )
 {
-	_${up_name}_AUTO(34, "Setter") << "| old(" << _var << ") new(" << input << ") "<< std::endl;
+	_${UP_CLASS_NAME}_AUTO(34, "Setter");
+#ifndef NO_DEBUG
+	std::cout << "\033[1D";
+#endif
+	std::cout <<" old(" << _var << ") new(" << input << ") "<< std::endl;
 	_var = input;
 }
 
@@ -168,16 +165,13 @@ void	${name}::set_var( int input )
 EOF
 }
 
-if [[ $# -eq 0 ]]
-then
+printf "\e[33;1m--- Class files Boiler Plate Generator ---\e[0m\n\n"
+ARG=$1
+
+while [[ -z "$ARG" ]]
+do
 	read -p "Enter class name : " ARG
-else
-	ARG=$1
-fi
-if [[ -z $ARG ]]
-then
-	echo "Please provide a non-empty name."
-	exit 1
-fi
+done
+
 gen_class_header $ARG
 gen_class_file $ARG
