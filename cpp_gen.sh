@@ -71,12 +71,13 @@ private:
 #   define _ARG(arg) #arg << "(" << arg << ") "
 #  endif /* _ARG */
 
-#  define _${UP_CLASS_NAME}_ARGS  _ARG(_var)
-#  define _${UP_CLASS_NAME}_AUTO(COLOR_CODE, TEXT) std::cout << "\e[" << COLOR_CODE << ";1m" \\
-	<< "< " << TEXT << " " << __PRETTY_FUNCTION__ << " > " \\
-	<< "\e[0m" << "[\033[34;47m" << this \\
-	<< "\033[0m] [\033[33;40mARGS\033[0m] " << _${UP_CLASS_NAME}_ARGS \\
-	<< std::endl;
+#  define _${UP_CLASS_NAME}_ARGS _ARG(_var)
+#  define _${UP_CLASS_NAME}_AUTO(COLOR_CODE, TEXT) \\
+	std::cout << "\e[" << COLOR_CODE << ";1m" \\
+		<< "< " << TEXT << " " << __PRETTY_FUNCTION__ << " > " \\
+		<< "\e[0m" << "[\033[34;47m" << this \\
+		<< "\033[0m] [\033[33;40mARGS\033[0m] " << _${UP_CLASS_NAME}_ARGS \\
+		<< std::endl;
 # else
 
 #  define _${UP_CLASS_NAME}_AUTO(x, y) ;
