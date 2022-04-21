@@ -1,8 +1,8 @@
 # CPP-Project-Template
 Project Template for CPP projects
-
-Contains a Base Class with its header.
-All 42 Canonical Classes cpp modules compliant.
+## contents
+- Scripts to generate Project quickly
+- Makefile
 
 # Features
 - Makefile
