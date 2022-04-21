@@ -1,1 +1,1 @@
-echo "export $HOME/Code/cpp/template:$PATH" >>~/.zshrc
+echo "export $HOME/.:$PATH" >>~/.zshrc
