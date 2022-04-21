@@ -42,9 +42,11 @@ void	FortyTwo::set_var( int input )
 {
 	_FORTYTWO_AUTO(34, "Setter");
 #ifndef NO_DEBUG
+	std::cout << "\033[1D";
 #endif
-	std::cout <<"Setter old(" << _var << ") new(" << input << ") "<< std::endl;
+	std::cout <<" old(" << _var << ") new(" << input << ") "<< std::endl;
 	_var = input;
 }
 
 // --------------------------------- Methods ------------------------------- //
+

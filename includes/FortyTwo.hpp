@@ -37,10 +37,12 @@ private:
 #   define _ARG(arg) #arg << "(" << arg << ") "
 #  endif /* _ARG */
 
-#  define _FORTYTWO_ARGS "[ARGS] " << _ARG(_var)
+#  define _FORTYTWO_ARGS  _ARG(_var)
 #  define _FORTYTWO_AUTO(COLOR_CODE, TEXT) std::cout << "\e[" << COLOR_CODE << ";1m" \
 	<< "< " << TEXT << " " << __PRETTY_FUNCTION__ << " > " \
-	<< "\e[0m" << _FORTYTWO_ARGS << std::endl;
+	<< "\e[0m" << "[\033[34;47m" << this \
+	<< "\033[0m] [\033[33;40mARGS\033[0m] " << _FORTYTWO_ARGS \
+	<< std::endl;
 # else
 
 #  define _FORTYTWO_AUTO(x, y) ;
