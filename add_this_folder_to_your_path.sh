@@ -1,1 +1,1 @@
-echo "export $HOME/.:$PATH" >>~/.zshrc
+echo "export PATH=$(pwd):\$PATH" >>~/.zshrc
