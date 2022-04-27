@@ -1,7 +1,7 @@
 #include "FortyTwo.hpp"
 
 // ----------------------------- Constructors ------------------------------ //
-FortyTwo::FortyTwo( void )
+FortyTwo::FortyTwo( )
 {
 	_var = 0;
 	_FORTYTWO_AUTO(32, "Default Constructor");
@@ -19,7 +19,7 @@ FortyTwo::FortyTwo( int var ) : _var(var)
 }
 
 // ------------------------------ Destructor ------------------------------- //
-FortyTwo::~FortyTwo( void )
+FortyTwo::~FortyTwo( )
 {
 	_FORTYTWO_AUTO(31, "Destructor called");
 }
@@ -32,7 +32,7 @@ FortyTwo & FortyTwo::operator=( const t& a )
 }
 
 // --------------------------- Getters && Setters -------------------------- //
-int	FortyTwo::get_var( void ) const
+int	FortyTwo::get_var( ) const
 {
 	_FORTYTWO_AUTO(33, "Getter");
 	return _var;

@@ -8,19 +8,19 @@ class FortyTwo
 	public:
 		typedef	FortyTwo t;
 // ----------------------------- Constructors ------------------------------ //
-		FortyTwo( void );	// Default Constructor
+		FortyTwo( );	// Default Constructor
 		FortyTwo( int var );	// Fields Constructor
 		FortyTwo( const t& c );	// Copy Constructor
 
 // ------------------------------ Destructor ------------------------------- //
-		~FortyTwo( void );	// Destructor
+		~FortyTwo( );	// Destructor
 
 // ------------------------------- Operators ------------------------------- //
 		FortyTwo & operator=( const t& a );
 		// Copy Assignement Operator
 
 // --------------------------- Getters && Setters -------------------------- //
-		int		get_var( void ) const;
+		int		get_var( ) const;
 		void	set_var( int input );
 
 // --------------------------------- Methods ------------------------------- //
@@ -39,11 +39,11 @@ private:
 
 #  define _FORTYTWO_ARGS _ARG(_var)
 #  define _FORTYTWO_AUTO(COLOR_CODE, TEXT) \
-	std::cout << "\e[" << COLOR_CODE << ";1m" \
-		<< "< " << TEXT << " " << __PRETTY_FUNCTION__ << " > " \
-		<< "\e[0m" << "[\033[34;47m" << this \
-		<< "\033[0m] [\033[33;40mARGS\033[0m] " << _FORTYTWO_ARGS \
-		<< std::endl;
+	std::cout << "{ \e[" << COLOR_CODE << ";1m"                 \
+			  << TEXT << " " << __PRETTY_FUNCTION__ << "\e[0m " \
+			  << "[\033[34;47m" << this                         \
+			  << "\033[0m]\033[0m: " << _FORTYTWO_ARGS  \
+			  << "}" << std::endl;
 # else
 
 #  define _FORTYTWO_AUTO(x, y) ;

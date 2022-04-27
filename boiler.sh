@@ -15,22 +15,19 @@ RST='\033[0m'
 
 printf "\e[33;1m--- Variables Boiler Plate Generator ---\e[0m\n\n"
 
-while [[ -z "$CLASS_NAME" ]]
-do
+while [[ -z "$CLASS_NAME" ]]; do
 	printf "Enter class name : "
 	read ans
 	CLASS_NAME=$ans
 done
-CLASS_NAME=$(tr '[:lower:]' '[:upper:]' <<< ${CLASS_NAME:0:1})${CLASS_NAME:1}
-while [[ -z "$VAR_NAME" ]]
-do
+CLASS_NAME=$(tr '[:lower:]' '[:upper:]' <<<${CLASS_NAME:0:1})${CLASS_NAME:1}
+while [[ -z "$VAR_NAME" ]]; do
 	printf "Enter variable name : "
 	read ans
 	VAR_NAME=$ans
 done
 
-while [[ -z "$VAR_TYPE" ]]
-do
+while [[ -z "$VAR_TYPE" ]]; do
 	printf "Enter variable type : "
 	read ans
 	VAR_TYPE=$ans
@@ -41,7 +38,8 @@ printf "${GRN}+++ Boiler plate for ${CLASS_NAME}${RST}::${YEL}${VAR_NAME}${GRN} 
 
 FUNC_NAME=$(echo ${VAR_NAME} | sed 's/^_//')
 
-printf "$(cat << EOF
+printf "$(
+	cat <<EOF
 ${BLU}class ${GRN}${CLASS_NAME}${RST}
 {
 
@@ -61,4 +59,5 @@ ${BLU}void	${GRN}${CLASS_NAME}::${YEL}set_${FUNC_NAME}${RST}( ${BLU}${VAR_TYPE} 
 {
 	${CYA}${VAR_NAME}${RST} = ${CYA}input${RST};
 }
-EOF)\n"
+EOF
+)\n"

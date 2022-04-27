@@ -8,11 +8,11 @@ INCLUDES = -I includes/
 
 # Directories
 BIN_DIR = ./bin
-SRC_DIR = .
 SRC_EXT = cpp
 
 # Use Bash not SH
 SHELL := bash
+
 
 ###▼▼▼<src-updater-do-not-edit-or-remove>▼▼▼
 # **************************************************************************** #
@@ -28,6 +28,7 @@ HEADERS := \
 
 ###▲▲▲<src-updater-do-not-edit-or-remove>▲▲▲
 
+
 OBJS := $(SRCS:%.cpp=$(BIN_DIR)/%.o)
 
 .PHONY: all dir re clean fclean run
@@ -42,8 +43,8 @@ $(NAME) : $(OBJS)
 $(BIN_DIR):
 	@mkdir -p $(BIN_DIR)
 
-$(BIN_DIR)/%.o: $(SRC_DIR)/%.$(SRC_EXT) $(HEADERS) | $(BIN_DIR)
-	@printf "\e[32;1m+++ Compiling $< -- [$(CXXFLAGS)] \e[0m\n"
+$(BIN_DIR)/%.o: %.$(SRC_EXT) $(HEADERS) | $(BIN_DIR)
+	@printf "\e[32;1m+++ Compiling $< - $@ -- [$(CXXFLAGS)] \e[0m\n"
 	@mkdir -p $(@D)
 	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
@@ -84,5 +85,3 @@ run:
 	@read -n 1 -p "Press any key to continue ..."
 
 	./$(NAME) $(RUN_ARGS)
-
-
