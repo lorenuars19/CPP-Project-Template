@@ -165,6 +165,6 @@ ARG=$1
 while [[ -z "$ARG" ]]; do
 	read -p "Enter class name : " ARG
 done
-
+ARG=$(tr '[:lower:]' '[:upper:]' <<<${ARG:0:1})${ARG:1}
 gen_class_header $ARG
 gen_class_file $ARG
