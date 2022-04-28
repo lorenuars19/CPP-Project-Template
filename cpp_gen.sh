@@ -61,7 +61,7 @@ class ${CLASS_NAME}
 		int		is_equal( const ${CLASS_NAME} comp );
 
 private:
-	int	_var;
+	int	var;
 
 };
 
@@ -71,7 +71,7 @@ private:
 #   define _ARG(arg) #arg << "(" << arg << ") "
 #  endif /* _ARG */
 
-#  define _${UP_CLASS_NAME}_ARGS _ARG(_var)
+#  define _${UP_CLASS_NAME}_ARGS _ARG(var)
 #  define _${UP_CLASS_NAME}_AUTO(COLOR_CODE, TEXT) \\
 	std::cout << "{ \e[" << COLOR_CODE << ";1m"                 \\
 			  << TEXT << " " << __PRETTY_FUNCTION__ << "\e[0m " \\
@@ -109,17 +109,17 @@ function gen_class_file {
 // ----------------------------- Constructors ------------------------------ //
 ${CLASS_NAME}::${CLASS_NAME}( )
 {
-	_var = 0;
+	var = 0;
 	_${UP_CLASS_NAME}_AUTO(32, "Default Constructor");
 }
 
 ${CLASS_NAME}::${CLASS_NAME}( const t& c )
 {
-	_var = c.get_var();
+	var = c.get_var();
 	_${UP_CLASS_NAME}_AUTO(32, "Copy Constructor");
 }
 
-${CLASS_NAME}::${CLASS_NAME}( int var ) : _var(var)
+${CLASS_NAME}::${CLASS_NAME}( int input ) : var(input)
 {
 	_${UP_CLASS_NAME}_AUTO(32, "Fields Constructor");
 }
@@ -133,7 +133,7 @@ ${CLASS_NAME}::~${CLASS_NAME}( )
 
 ${CLASS_NAME} & ${CLASS_NAME}::operator=( const t& a )
 {
-	_var = a.get_var();
+	var = a.get_var();
 	return *this;
 }
 
@@ -141,7 +141,7 @@ ${CLASS_NAME} & ${CLASS_NAME}::operator=( const t& a )
 int	${CLASS_NAME}::get_var( ) const
 {
 	_${UP_CLASS_NAME}_AUTO(33, "Getter");
-	return _var;
+	return var;
 }
 
 void	${CLASS_NAME}::set_var( int input )
@@ -150,8 +150,8 @@ void	${CLASS_NAME}::set_var( int input )
 #ifndef NO_DEBUG
 	std::cout << "\033[1D";
 #endif
-	std::cout <<" old(" << _var << ") new(" << input << ") "<< std::endl;
-	_var = input;
+	std::cout <<" old(" << var << ") new(" << input << ") "<< std::endl;
+	var = input;
 }
 
 // --------------------------------- Methods ------------------------------- //
