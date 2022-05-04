@@ -21,6 +21,9 @@ Project Template for CPP projects
 ```bash
 bash cpp_gen.sh
 ```
+### Demo
+<img width="2242" alt="cpp_gen.sh demo" src="https://user-images.githubusercontent.com/62104425/166681682-3b1658d1-5be2-48fc-9ae3-88878ec7018c.png">
+
 
 - ## script to help adding new variables in class:<br>
   - a symlink `b` to the script
