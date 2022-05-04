@@ -202,7 +202,7 @@ function gen_attributes {
 			ATTRIB+=("PUBLIC")
 		fi
 
-		printf "\nATTRIB : [ Type '${ATTRIB[0]}' ] [ Name '${ATTRIB[1]}' ] [ Public/Private : '${ATTRIB[2]}' ] [ FULL : '${ATTRIB[*]}' ]\n\n"
+		printf "Attribute : [ Type '${ATTRIB[0]}' ] [ Name '${ATTRIB[1]}' ] [ Public/Private : '${ATTRIB[2]}' ] [ FULL : '${ATTRIB[*]}' ]\n"
 
 		ATTS+=("${ATTRIB[@]}")
 		read -p "Type 'end' or press enter to add another attribute : " ANS
@@ -227,10 +227,10 @@ function gen_attributes {
 		ATTS_COPY+="${ATT_NAME} = c.get_${ATT_NAME}();"
 
 		ATTS_GETTER_SETTER_DECL+="${ATT_TYPE} get_${ATT_NAME}() const;"$'\n'$'\t'
-		ATTS_GETTER_SETTER_DECL+="${ATT_TYPE} set_${ATT_NAME}(${ATT_TYPE} input);"$'\n'$'\t'
+		ATTS_GETTER_SETTER_DECL+="void set_${ATT_NAME}(${ATT_TYPE} input);"$'\n'$'\t'
 
 		ATTS_GETTER_SETTER_DEFS+="${ATT_TYPE} ${CLASS_NAME}::get_${ATT_NAME}() const{ return ${ATT_NAME}; }"$'\n'
-		ATTS_GETTER_SETTER_DEFS+="${ATT_TYPE} ${CLASS_NAME}::set_${ATT_NAME}(${ATT_TYPE} input){ ${ATT_NAME} = input; }"$'\n'$'\n'
+		ATTS_GETTER_SETTER_DEFS+="void ${CLASS_NAME}::set_${ATT_NAME}(${ATT_TYPE} input){ ${ATT_NAME} = input; }"$'\n'$'\n'
 
 		if [[ ${ATT_VISIBILITY} == "PRIVATE" ]]; then
 			ATTS_PRIV+="${ATT_TYPE} ${ATT_NAME};"

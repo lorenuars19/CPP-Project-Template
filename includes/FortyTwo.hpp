@@ -10,7 +10,7 @@ public:
 
 // ----------------------------- Constructors ------------------------------ //
 	FortyTwo();	// Default Constructor
-	FortyTwo(int in_var, float in_prec);	// Fields Constructor
+	FortyTwo(std::string in_name, int in_num);	// Fields Constructor
 	FortyTwo(const FortyTwo& c);	// Copy Constructor
 
 // ------------------------------ Destructor ------------------------------- //
@@ -21,18 +21,18 @@ public:
 	// Copy Assignement Operator
 
 // --------------------------- Getters && Setters -------------------------- //
-	int get_var() const;
-	int set_var(int input);
+	std::string get_name() const;
+	std::string set_name(std::string input);
 	
-	float get_prec() const;
-	float set_prec(float input);
+	int get_num() const;
+	int set_num(int input);
 	
 
 // --------------------------------- Methods ------------------------------- //
 
 private:
-	int var;
-	float prec;
+	std::string name;
+	int num;
 
 };
 
@@ -42,7 +42,7 @@ private:
 #   define _ARG(arg) #arg << "(" << arg << ") "
 #  endif /* _ARG */
 
-#  define _FORTYTWO_ARGS _ARG(var) << _ARG(prec)
+#  define _FORTYTWO_ARGS _ARG(name) << _ARG(num)
 #  define _FORTYTWO_AUTO(COLOR_CODE, TEXT) \
 	std::cout << "{ \e[" << COLOR_CODE << ";1m"                 \
 			  << TEXT << " " << __PRETTY_FUNCTION__ << "\e[0m " \
