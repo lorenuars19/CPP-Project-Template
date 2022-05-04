@@ -7,22 +7,27 @@ Project Template for CPP projects
 
 # Features
 - Makefile
-- script to update SRCS variable in Makefile automatically and run it :<br>
-Run with
+
+- ## script to update SRCS variable in Makefile automatically and run it :<br>
+  - a symlink `u` to the script
+  - Run with
 ```bash
-bash update_srcs.sh
+  bash update_srcs.sh
 ```
-and a symlink `u`
-- script to generate new canonical classes :<br>
+
+- ## script to generate new canonical classes with the attributes[NEW!] :<br>
+  - a symlink `c` to the script
+  - Run with
 ```bash
 bash cpp_gen.sh
 ```
-and a symlink `c`
-- script to help adding new variables in class:<br>
+
+- ## script to help adding new variables in class:<br>
+  - a symlink `b` to the script
+  - Run with
 ```bash
 bash boiler.sh
 ```
-and a symlink `b`
 
 
 This script will ask you for the class name or you can pass it as an argument.

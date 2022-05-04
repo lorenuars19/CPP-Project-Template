@@ -3,17 +3,17 @@
 // ----------------------------- Constructors ------------------------------ //
 FortyTwo::FortyTwo()
 {
-	var = 0;
 	_FORTYTWO_AUTO(32, "Default Constructor");
 }
 
-FortyTwo::FortyTwo(const t &c)
+FortyTwo::FortyTwo(const FortyTwo &c)
 {
-	var = c.get_var();
 	_FORTYTWO_AUTO(32, "Copy Constructor");
+	var = c.get_var();
+	prec = c.get_prec();
 }
 
-FortyTwo::FortyTwo(int var) : var(var)
+FortyTwo::FortyTwo(int in_var, float in_prec) : var(in_var), prec(in_prec)
 {
 	_FORTYTWO_AUTO(32, "Fields Constructor");
 }
@@ -25,27 +25,18 @@ FortyTwo::~FortyTwo()
 }
 // ------------------------------- Operators ------------------------------- //
 
-FortyTwo &FortyTwo::operator=(const t &a)
+FortyTwo &FortyTwo::operator=(const FortyTwo &c)
 {
-	var = a.get_var();
+	var = c.get_var();
+	prec = c.get_prec();
 	return *this;
 }
 
 // --------------------------- Getters && Setters -------------------------- //
-int FortyTwo::get_var() const
-{
-	_FORTYTWO_AUTO(33, "Getter");
-	return var;
-}
+int FortyTwo::get_var() const { return var; }
+int FortyTwo::set_var(int input) { var = input; }
 
-void FortyTwo::set_var(int input)
-{
-	_FORTYTWO_AUTO(34, "Setter");
-#ifndef NO_DEBUG
-	std::cout << "\033[1D";
-#endif
-	std::cout << " old(" << var << ") new(" << input << ") " << std::endl;
-	var = input;
-}
+float FortyTwo::get_prec() const { return prec; }
+float FortyTwo::set_prec(float input) { prec = input; }
 
 // --------------------------------- Methods ------------------------------- //
