@@ -13,8 +13,8 @@ int main()
 	ft.set_num(43);
 	de.set_num(19);
 
-	std::cout << "name : " << ft.get_name() << "name : " << de.get_name() << std::endl;
-	std::cout << "num : " << ft.get_num() << "num : " << de.get_num() << std::endl;
+	std::cout << "name : " << ft.get_name() << " name : " << de.get_name() << std::endl;
+	std::cout << "num : " << ft.get_num() << " num : " << de.get_num() << std::endl;
 
 #if DEBUG == 1
 	FortyTwo *leak = new FortyTwo;

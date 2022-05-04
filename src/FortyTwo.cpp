@@ -34,10 +34,10 @@ FortyTwo & FortyTwo::operator=(const FortyTwo& c)
 
 // --------------------------- Getters && Setters -------------------------- //
 std::string FortyTwo::get_name() const{ return name; }
-std::string FortyTwo::set_name(std::string input){ name = input; }
+void FortyTwo::set_name(std::string input){ name = input; }
 
 int FortyTwo::get_num() const{ return num; }
-int FortyTwo::set_num(int input){ num = input; }
+void FortyTwo::set_num(int input){ num = input; }
 
 
 

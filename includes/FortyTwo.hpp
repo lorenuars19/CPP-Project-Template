@@ -22,10 +22,10 @@ public:
 
 // --------------------------- Getters && Setters -------------------------- //
 	std::string get_name() const;
-	std::string set_name(std::string input);
+	void set_name(std::string input);
 	
 	int get_num() const;
-	int set_num(int input);
+	void set_num(int input);
 	
 
 // --------------------------------- Methods ------------------------------- //
