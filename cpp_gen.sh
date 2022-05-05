@@ -202,20 +202,19 @@ function gen_attributes {
 			ATTRIB+=("PUBLIC")
 		fi
 
-		printf "Attribute : [ Type '${ATTRIB[0]}' ] [ Name '${ATTRIB[1]}' ] [ Public/Private : '${ATTRIB[2]}' ]"
+		printf "Attribute : [ Type '${ATTRIB[0]}' ] [ Name '${ATTRIB[1]}' ] [ Public/Private : '${ATTRIB[2]}' ]\n"
 
 		ATTS+=("${ATTRIB[@]}")
 		read -p "Type 'end' or press enter to add another attribute : " ANS
 		ATT_CNT=$((ATT_CNT + 1))
 	done
 
-	echo "ATTS '${ATTS[@]}' ATT_CNT ${ATT_CNT} >> $((${ATT_CNT} * 3))"
+	# echo "ATTS '${ATTS[@]}' ATT_CNT ${ATT_CNT} >> $((${ATT_CNT} * 3))"
 
 	i=0
 	ATT_CNT_RAW=$((${ATT_CNT} * 3))
 	ATTS_CONSTR_ARGS_INIT+=": "
 	while [[ i -lt ${ATT_CNT_RAW} ]]; do
-		echo i $i
 		ATT_TYPE=${ATTS[$((i + 0))]}
 		ATT_NAME=${ATTS[$((i + 1))]}
 		ATT_VISIBILITY=${ATTS[$((i + 2))]}
