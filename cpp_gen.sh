@@ -107,10 +107,9 @@ ${CLASS_NAME}::${CLASS_NAME}()
 	_${UP_CLASS_NAME}_AUTO(32, "Default Constructor");
 }
 
-${CLASS_NAME}::${CLASS_NAME}(const ${CLASS_NAME}& c)
+${CLASS_NAME}::${CLASS_NAME}(const ${CLASS_NAME}& c) ${ATTS_CONSTR_COPY}
 {
 	_${UP_CLASS_NAME}_AUTO(32, "Copy Constructor");
-	${ATTS_COPY}
 }
 
 ${CLASS_NAME}::${CLASS_NAME}(${ATTS_CONSTR_ARGS}) ${ATTS_CONSTR_ARGS_INIT}
@@ -127,6 +126,7 @@ ${CLASS_NAME}::~${CLASS_NAME}()
 
 ${CLASS_NAME} & ${CLASS_NAME}::operator=(const ${CLASS_NAME}& c)
 {
+	_${UP_CLASS_NAME}_AUTO(32, "Copy Assignement Operator");
 	${ATTS_COPY}
 	return *this;
 }
@@ -214,6 +214,7 @@ function gen_attributes {
 	i=0
 	ATT_CNT_RAW=$((${ATT_CNT} * 3))
 	ATTS_CONSTR_ARGS_INIT+=": "
+	ATTS_CONSTR_COPY+=": "
 	while [[ i -lt ${ATT_CNT_RAW} ]]; do
 		ATT_TYPE=${ATTS[$((i + 0))]}
 		ATT_NAME=${ATTS[$((i + 1))]}
@@ -223,6 +224,7 @@ function gen_attributes {
 		ATTS_CONSTR_ARGS_INIT+="${ATT_NAME}(in_${ATT_NAME})"
 		ATTS_MACRO+="_ARG(${ATT_NAME})"
 
+		ATTS_CONSTR_COPY+="${ATT_NAME}(c.get_${ATT_NAME}())"
 		ATTS_COPY+="${ATT_NAME} = c.get_${ATT_NAME}();"
 
 		ATTS_GETTER_SETTER_DECL+="${ATT_TYPE} get_${ATT_NAME}() const;"$'\n'$'\t'
@@ -240,6 +242,7 @@ function gen_attributes {
 		if [[ i -lt $((${ATT_CNT_RAW} - 3)) ]]; then
 			ATTS_CONSTR_ARGS+=", "
 			ATTS_GETTER_SETTER_DECL+=$'\n'$'\t'
+			ATTS_CONSTR_COPY+=", "
 			ATTS_COPY+=$'\n'$'\t'
 			ATTS_CONSTR_ARGS_INIT+=", "
 			ATTS_MACRO+=" << "
@@ -256,7 +259,7 @@ function gen_attributes {
 	# printf "\n\nATTS_CONSTR_ARGS\n${CLASS_NAME}(${ATTS_CONSTR_ARGS})\n"
 	# printf "\n\nATTS_CONSTR_ARGS_INIT\n${ATTS_CONSTR_ARGS_INIT}'\n"
 	# printf "\n\nATTS_MACRO\n${ATTS_MACRO}\n"
-	# printf "\n\nATTS_COPY\n${ATTS_COPY}\n"
+	# printf "\n\nATTS_CONSTR_COPY\n${ATTS_CONSTR_COPY}\n"
 	# printf "\n\nATTS_GETTER_SETTER_DECL\n${ATTS_GETTER_SETTER_DECL}\n"
 	# printf "\n\nATTS_GETTER_SETTER_DEFS\n${ATTS_GETTER_SETTER_DEFS}\n"
 	# printf "\n\nATTS_PRIV\n${ATTS_PRIV}\n"
