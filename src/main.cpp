@@ -6,7 +6,12 @@ int main()
 	FortyTwo ft("foo", 42);
 	FortyTwo ft_1(ft);
 
-	FortyTwo ft_2 = ft;
+	FortyTwo ft_2;
+
+	ft_2 = ft_1;
+	std::cout << "ft_2 name : " << ft_2.get_name() << '\n';
+	ft_2.set_name("Copy");
+	std::cout << "ft_2 name : " << ft_2.get_name() << '\n';
 
 	ft.set_name("bar");
 	de.set_name("baz");
